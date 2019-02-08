@@ -1,6 +1,8 @@
-## Description
+## I didn't make this
 
 AnsiSick.js is a quick and dirty fork of AnsiLove.js that exposes private functions within the script for further use.
+
+## Description
 
 AnsiLove.js is a partial rewrite of [ansilove][1] and [AnsiLove-C][2] in the Javascript programming language. Unlike the original projects, AnsiLove.js enables artscene related file formats to be displayed directly on a webpage on the client-side, and supports ANSi (.ANS), PCBOARD (.PCB), BiNARY (.BIN), ADF (.ADF), iDF (.IDF), TUNDRA (.TND) and XBiN (.XB) formats.
 
