@@ -3,6 +3,3 @@ reference/
 
 # Node
 node_modules/
-
-# Builds
-dist/*
