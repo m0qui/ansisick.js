@@ -2501,8 +2501,7 @@ var AnsiLove = (function () {
         "popup": popup,
         "popupAnimationBytes": popupAnimationBytes,
         "popupAnimation": popupAnimation,
-        Parser,
-        httpGet
+        Parser
     };
 }());
 
