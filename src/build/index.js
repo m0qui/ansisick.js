@@ -6,7 +6,7 @@ const fs = require('fs'),
 const readFileAsync = promisify(fs.readFile),
       writeFileAsync = promisify(fs.writeFile)
 
-const output = 'dist',
+const output = path.join(__dirname, '../../dist'),
       files = [
   'browser.mustache',
   'node.mustache'
