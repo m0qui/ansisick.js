@@ -1,8 +1,5 @@
 reference/
 .DS_Store
 
-# Builds
-dist/*
-
 # Node
 node_modules/
