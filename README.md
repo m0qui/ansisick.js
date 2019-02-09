@@ -1,6 +1,14 @@
 ## I didn't make this
 
-AnsiSick.js is a quick and dirty fork of AnsiLove.js that exposes private functions within the script for further use.
+AnsiSick.js is a quick and dirty fork of [AnsiLove.js](https://github.com/ansilove/ansilove.js) that exposes private functions within the script for further use, and adds compatability with Node.js and ES6 modules. I didn't make this, I just hacked it.
+
+Requiring on Node.
+> require('ansilove.js')
+
+Importing with ES6 modules.
+> const AnsiLove = import('/node_modules/ansilove.js/dist/browser.js')
+
+The following is the original README.
 
 ## Description
 

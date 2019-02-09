@@ -1,4 +1,6 @@
 var AnsiLove = (function () {
+    const self = this || {}
+
     "use strict";
     var Palette, Font, Parser, Popup;
     // Fetches a file located at <url>, returned as a Uint8Array. <callback> is called upon success, returning the array, <callbackFail> is called, if specified, if the operation was unsucessful with the http code.
@@ -1772,7 +1774,14 @@ var AnsiLove = (function () {
 
         // A single entrypoint for the Parser.
         return {
-            "readBytes": readBytes
+            "readBytes": readBytes,
+            adf,
+            ans,
+            asc,
+            idf,
+            pcb,
+            tnd,
+            xb
         };
     }());
 
@@ -2491,11 +2500,15 @@ var AnsiLove = (function () {
         "popupBytes": popupBytes,
         "popup": popup,
         "popupAnimationBytes": popupAnimationBytes,
-        "popupAnimation": popupAnimation
+        "popupAnimation": popupAnimation,
+        Parser,
+        httpGet
     };
 }());
 
 (function () {
+    const self = this || {}
+
     "use strict";
     // If this script is executed as part of a Web Worker thread, attach methods to <self> to provide hooks for a web worker instance.
     if (self.WorkerLocation) {
