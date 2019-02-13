@@ -1,5 +1,5 @@
 {
-  "name": "ansilove.js",
+  "name": "ansisick.js",
   "version": "1.0.0",
   "description": "AnsiLove.js is a partial rewrite of ansilove and AnsiLove-C in the Javascript programming language",
   "main": "dist/node",
