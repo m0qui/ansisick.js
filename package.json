@@ -25,9 +25,6 @@
     "url": "https://github.com/ansilove/ansilove.js/issues"
   },
   "homepage": "https://github.com/ansilove/ansilove.js#readme",
-  "dependencies": {
-    "xmlhttprequest": "^1.8.0"
-  },
   "devDependencies": {
     "mustache": "^3.0.1"
   }

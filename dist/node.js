@@ -1,5 +1,3 @@
-const { XMLHttpRequest } = require("xmlhttprequest")
-
 var AnsiLove = (function () {
     const self = this || {}
 
