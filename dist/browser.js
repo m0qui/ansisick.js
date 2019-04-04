@@ -1844,21 +1844,19 @@ var AnsiLove = (function () {
     // Same as splitRenderBytes(), but this fetches a <url> by calling httpGet(), instead of supplying raw bytes.
     function splitRender(url, callback, splitRows, options, callbackFail) {
         // Call httpGet() with the supplied <url>.
-        var returnValur = new Promise(((resolve, reject) => {
-            reject("FAILURE");
+        return new Promise(((resolve, reject) => {
+            httpGet(url, function (bytes) {
+                // Create a blank <options> object, if one wasn't supplied.
+                options = options || {};
+                // Set the filetype option, based on the url, if one wasn't already set in <options>.
+                if (!options.filetype) {
+                    options.filetype = url.split(".").pop().toLowerCase();
+                }
+                // Call the version of this function for <bytes>, with the Uint8Array data returned with httpGet().
+                resolve(splitRenderBytes(bytes, callback, splitRows, options, reject));
+                // Pass <callbackFail> to httpGet(), in case the network request fails.
+            }, reject);
         }));
-        httpGet(url, function (bytes) {
-            // Create a blank <options> object, if one wasn't supplied.
-            options = options || {};
-            // Set the filetype option, based on the url, if one wasn't already set in <options>.
-            if (!options.filetype) {
-                options.filetype = url.split(".").pop().toLowerCase();
-            }
-            // Call the version of this function for <bytes>, with the Uint8Array data returned with httpGet().
-            returnValur = splitRenderBytes(bytes, callback, splitRows, options, callbackFail);
-            // Pass <callbackFail> to httpGet(), in case the network request fails.
-        }, callbackFail);
-        return returnValur;
     }
 
     // Receives a sequence of <bytes>, representing an ANSI file, with <options> supplied by the user and returns an Ansimation object which can be used to display and control an animation.
