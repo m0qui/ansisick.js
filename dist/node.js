@@ -1764,11 +1764,17 @@ var AnsiLove = (function () {
                 }
                 // ... and return it.
                 callback(returnArray, data.sauce);
+                return new Promise((resolve) => {
+                    resolve(returnArray);
+                });
             } else {
                 // For a single image, send the data to display()...
                 displayData = display(data.imageData, 0, data.imageData.rows, options);
                 // ... and call callback() with either the raw data, or a canvas element, depending on the <options.imagedata> setting. 
                 callback(options.imagedata ? displayData : displayDataToCanvas(displayData), data.sauce);
+                return new Promise((resolve) => {
+                    resolve(options.imagedata ? displayData : displayDataToCanvas(displayData));
+                });
             }
         }
 
@@ -1823,7 +1829,7 @@ var AnsiLove = (function () {
         // Catch any errors.
         try {
             // call readBytes(), with 27 as the default splitRows option, and create an empty object if options, is missing.
-            Parser.readBytes(bytes, callback, splitRows || 27, options);
+            return Parser.readBytes(bytes, callback, splitRows || 27, options);
         } catch (e) {
             if (callbackFail) {
                 // If an error is caught, call callbackFail()...
@@ -1838,6 +1844,9 @@ var AnsiLove = (function () {
     // Same as splitRenderBytes(), but this fetches a <url> by calling httpGet(), instead of supplying raw bytes.
     function splitRender(url, callback, splitRows, options, callbackFail) {
         // Call httpGet() with the supplied <url>.
+        var returnValur = new Promise(((resolve, reject) => {
+            reject("FAILURE");
+        }));
         httpGet(url, function (bytes) {
             // Create a blank <options> object, if one wasn't supplied.
             options = options || {};
@@ -1846,9 +1855,10 @@ var AnsiLove = (function () {
                 options.filetype = url.split(".").pop().toLowerCase();
             }
             // Call the version of this function for <bytes>, with the Uint8Array data returned with httpGet().
-            splitRenderBytes(bytes, callback, splitRows, options, callbackFail);
+            returnValur = splitRenderBytes(bytes, callback, splitRows, options, callbackFail);
             // Pass <callbackFail> to httpGet(), in case the network request fails.
         }, callbackFail);
+        return returnValur;
     }
 
     // Receives a sequence of <bytes>, representing an ANSI file, with <options> supplied by the user and returns an Ansimation object which can be used to display and control an animation.
@@ -2547,5 +2557,6 @@ var AnsiLove = (function () {
         };
     }
 }());
+
 
 module.exports = AnsiLove
